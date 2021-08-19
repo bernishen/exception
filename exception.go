@@ -2,8 +2,8 @@ package exception
 
 // Exception : Exception message.
 type Exception struct {
-	Scope ExceptionScope
-	Code  int
+	Scope   ExceptionScope
+	Code    int
 	Message string
 }
 
@@ -42,4 +42,19 @@ func NewException(scope ExceptionScope, code int, msg string) *Exception {
 		OnCreated(&ex)
 	}
 	return &ex
+}
+
+func (s *ExceptionScope) ToString() string {
+	switch *s {
+	case Information:
+		return "Information"
+	case Warning:
+		return "Warning"
+	case Error:
+		return "Error"
+	case FatalError:
+		return "FatalError"
+	default:
+		return ""
+	}
 }
