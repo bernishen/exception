@@ -2,9 +2,14 @@ package exception
 
 // Exception : Exception message.
 type Exception struct {
-	Scope   ExceptionScope
-	Code    int
-	Message string
+	Scope   ExceptionScope `json:"scope"`
+	Code    int            `json:"code"`
+	Message string         `json:"message"`
+}
+
+type IExceptionInfo interface {
+	Code() int
+	Message() string
 }
 
 // ExceptionScope : A exception's scope.
@@ -42,6 +47,32 @@ func NewException(scope ExceptionScope, code int, msg string) *Exception {
 		OnCreated(&ex)
 	}
 	return &ex
+}
+
+// NewExceptionByInfo is init a error info entity.
+func NewExceptionByInfo(scope ExceptionScope, info IExceptionInfo) *Exception {
+	code, msg := readInfo(info)
+	ex := NewException(scope, code, msg)
+	return ex
+}
+
+func readInfo(info IExceptionInfo) (int, string) {
+	code, ok1 := func(i IExceptionInfo) (int, bool) {
+		defer func() { recover() }()
+		return i.Code(), true
+	}(info)
+	msg, ok2 := func(i IExceptionInfo) (string, bool) {
+		defer func() { recover() }()
+		return i.Message(), true
+	}(info)
+
+	if !ok2 {
+		return -1, "未正确获取异常消息｜No exception message was receive"
+	}
+	if ok2 && !ok1 {
+		return -1, "[未正确获取异常代码｜No exception code was receive]" + msg
+	}
+	return code, msg
 }
 
 func (s *ExceptionScope) ToString() string {
