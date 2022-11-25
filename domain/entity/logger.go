@@ -1,8 +1,6 @@
 package entity
 
-import (
-	"exception/domain/repository"
-)
+import "github.com/bernishen/exception/domain/repository"
 
 // Logger 日志记录器
 type Logger struct {

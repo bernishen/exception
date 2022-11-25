@@ -1,8 +1,6 @@
 package entity
 
-import (
-	"exception/domain/types/messageScope"
-)
+import "github.com/bernishen/exception/domain/types/messageScope"
 
 type Exception struct {
 	Scope   messageScope.MessageScope `json:"scope"`

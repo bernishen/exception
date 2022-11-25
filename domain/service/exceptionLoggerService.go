@@ -1,6 +1,6 @@
 package service
 
-import "exception/domain/entity"
+import "github.com/bernishen/exception/domain/entity"
 
 type ExceptionLoggerService struct {
 }

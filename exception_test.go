@@ -2,8 +2,8 @@ package exception
 
 import (
 	"encoding/json"
-	"exception/domain/types/messageScope"
 	"fmt"
+	"github.com/bernishen/exception/domain/types/messageScope"
 	"strings"
 	"testing"
 )

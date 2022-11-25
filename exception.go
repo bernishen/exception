@@ -1,10 +1,10 @@
 package exception
 
 import (
-	"exception/domain/entity"
-	"exception/domain/repository"
-	"exception/domain/service"
-	"exception/domain/types/messageScope"
+	"github.com/bernishen/exception/domain/entity"
+	"github.com/bernishen/exception/domain/repository"
+	"github.com/bernishen/exception/domain/service"
+	"github.com/bernishen/exception/domain/types/messageScope"
 )
 
 func New(scope messageScope.MessageScope, code int, msg string) *entity.Exception {
