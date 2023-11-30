@@ -1,4 +1,4 @@
-package messageScope
+package msgscope
 
 type MessageScope int
 

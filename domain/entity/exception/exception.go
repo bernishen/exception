@@ -1,11 +1,11 @@
-package entity
+package exception
 
-import "github.com/bernishen/exception/domain/types/messageScope"
+import "github.com/bernishen/exception/domain/types/msgscope"
 
 type Exception struct {
-	Scope   messageScope.MessageScope `json:"scope"`
-	Code    int                       `json:"code"`
-	Message string                    `json:"message"`
+	Scope   msgscope.MessageScope `json:"scope"`
+	Code    int                   `json:"code"`
+	Message string                `json:"message"`
 }
 
 type OnCreatedEvent func(ex *Exception)
@@ -13,7 +13,7 @@ type OnCreatedEvent func(ex *Exception)
 var OnCreated []OnCreatedEvent
 
 // NewException is init a error info entity.
-func NewException(scope messageScope.MessageScope, code int, msg string) *Exception {
+func NewException(scope msgscope.MessageScope, code int, msg string) *Exception {
 	ex := Exception{scope, code, msg}
 	if OnCreated != nil || len(OnCreated) == 0 {
 		return &ex

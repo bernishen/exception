@@ -1,10 +1,12 @@
-package entity
+package logger
 
-import "github.com/bernishen/exception/domain/repository"
+import (
+	"github.com/bernishen/exception/domain/repository/logger"
+)
 
 // Logger 日志记录器
 type Logger struct {
-	Repositories []repository.LoggerRepository
+	Repositories []logger.LoggerRepository
 }
 
 var defaultLogger *Logger
@@ -12,7 +14,7 @@ var defaultLogger *Logger
 // NewLogger 创建一个日至记录器 | Creating a logger
 func NewLogger() *Logger {
 	logger := &Logger{
-		[]repository.LoggerRepository{},
+		[]logger.LoggerRepository{},
 	}
 	return logger
 }
@@ -26,7 +28,7 @@ func DefaultLogger() *Logger {
 }
 
 // Register 注册日志记录仓储 | Register the loggerRepository
-func (l *Logger) Register(loggerRepository repository.LoggerRepository) {
+func (l *Logger) Register(loggerRepository logger.LoggerRepository) {
 	if loggerRepository == nil {
 		return
 	}

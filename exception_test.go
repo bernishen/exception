@@ -3,7 +3,7 @@ package exception
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/bernishen/exception/domain/types/messageScope"
+	"github.com/bernishen/exception/domain/types/msgscope"
 	"strings"
 	"testing"
 )
@@ -11,7 +11,7 @@ import (
 func TestNew(t *testing.T) {
 	RegisterLogger(&testLog{})
 
-	a := New(messageScope.Information, -99, "测试创建异常 | Test creation exception")
+	a := New(msgscope.Information, -99, "测试创建异常 | Test creation exception")
 	a1, err := json.Marshal(a)
 	if err != nil {
 		t.Log(err.Error())
@@ -29,7 +29,7 @@ func init() {
 	RegisterLogger(&testLog{})
 }
 
-func (r *testLog) Log(scope messageScope.MessageScope, code int, msg string) {
+func (r *testLog) Log(scope msgscope.MessageScope, code int, msg string) {
 	r.msg = msg
 	fmt.Printf("[%v<code:%v>] %s \n\r", scope.String(), code, msg)
 }
